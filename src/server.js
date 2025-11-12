@@ -58,11 +58,12 @@ const origins =
 app.use(cors());
 
 /* ─────────────────────── Helmet / Seguridad ───────────────────── */
-app.use(
+/* app.use(
   helmet({
     crossOriginResourcePolicy: false,
+    crossOriginEmbedderPolicy: false
   })
-);
+); */
 if (process.env.NODE_ENV !== "production") app.use(morgan("dev"));
 app.use(compression());
 
@@ -110,13 +111,13 @@ app.get("/health", (_req, res) => res.json({ ok: true }));
 
 /* ───────────────────── HTTP + Socket.IO bind ──────────────────── */
 const server = http.createServer(app);
-const io = new SocketIOServer(server, {
+const io = new SocketIOServer(server/* , {
   cors: {
     origin: origins || true,
     methods: ["GET", "POST"],
     credentials: true,
   },
-});
+} */);
 app.set("io", io);
 // compat: algunos módulos esperan req.io
 app.use((req, _res, next) => {
