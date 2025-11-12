@@ -55,12 +55,7 @@ const origins =
   parseOrigins(process.env.CORS_ORIGINS || process.env.CORS_ORIGIN) ||
   (process.env.NODE_ENV !== "production" ? devDefaults : null);
 
-app.use(
-  cors({
-    origin: origins || true,
-    credentials: true,
-  })
-);
+app.use(cors());
 
 /* ─────────────────────── Helmet / Seguridad ───────────────────── */
 app.use(
