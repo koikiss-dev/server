@@ -435,7 +435,7 @@ app.use((_req, res) =>
 );
 
 /* ─────────────────────── Start / Shutdown ─────────────────────── */
-const PORT = Number(process.env.API_PORT || process.env.PORT || 4000);
+const PORT = Number(process.env.PORT || 4000);
 server.listen(PORT, () => {
   console.log(`[api] http://localhost:${PORT}`);
   console.log(
